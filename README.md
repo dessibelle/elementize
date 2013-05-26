@@ -11,12 +11,14 @@ Javascript (jQuery plugin) for replacing any chemical element symbols encountere
 
 The below code illustrates an example usage, all available options and their default values.
 
-    $('p').elementize({
-        matchCase: true,            // Matches only "Be", not "BE", "be" or "bE"
-        firstWordOnly: false,       // Matches only the first word in the element contents
-        numberAsSpan: false,        // Inserts atomic number in a span element rather than data-attribute and :after pseudo-element
-        style: 'colorize'           // Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'
-    });
+```javascript
+$('p').elementize({
+    matchCase: true,            // Matches only "Be", not "BE", "be" or "bE"
+    firstWordOnly: false,       // Matches only the first word in the element contents
+    numberAsSpan: false,        // Inserts atomic number in a span element rather than data-attribute and :after pseudo-element
+    style: 'colorize'           // Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'
+});
+```
 
 ##Known limitations
 
