@@ -2,6 +2,8 @@
 
 Javascript (jQuery plugin) for replacing any chemical element symbols encountered inside the matched element contents with periodic table blocks, inspired by the Breaking Bad intro titles.
 
+[Live example](http://dessibelle.github.io/elementize/example.html)
+
 ##Usage
 
 1. Add `elementize.min.js` and `elementize.min.css` to you markup
