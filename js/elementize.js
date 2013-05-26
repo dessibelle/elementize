@@ -6,18 +6,18 @@
 
   $.fn.extend({
     elementize: function(options) {
-      var elementMarkup, initialize, log, periodic_table, regex, replaceCallback, settings, styles, symbols;
+      var elementMarkup, getTextNodesIn, initialize, log, periodic_table, regex, regex_string, replaceCallback, settings, styles, symbols;
 
       styles = ['clear', 'colorize', 'breaking-bad'];
       settings = {
         matchCase: false,
-        firstWordOnly: false,
         numberAsSpan: false,
         debug: false,
         style: 'colorize'
       };
       symbols = [];
-      regex = "";
+      regex_string = "";
+      regex = null;
       periodic_table = {
         uut: {
           name: 'Ununtrium',
@@ -1083,7 +1083,7 @@
         }
       };
       initialize = function(options) {
-        var key, value, _ref;
+        var exp_settings, key, value, _ref;
 
         if (((options != null ? options.style : void 0) != null) && (_ref = !options.style, __indexOf.call(styles, _ref) >= 0)) {
           options.style = null;
@@ -1093,10 +1093,12 @@
           value = periodic_table[key];
           symbols.push(value.symbol);
         }
-        regex = "(" + (symbols.join("|")) + ")";
-        if (settings.firstWordOnly) {
-          return regex = "^" + regex;
+        regex_string = "(" + (symbols.join("|")) + ")";
+        exp_settings = "g";
+        if (!settings.matchCase) {
+          exp_settings += "i";
         }
+        return regex = new RegExp(regex_string, exp_settings);
       };
       log = function(msg) {
         if (settings.debug) {
@@ -1107,6 +1109,32 @@
       log("Elementize => Match case: " + settings.matchCase);
       log("Elementize => Match initial: " + settings.matchInitial);
       log("Elementize => Symbols: " + symbols);
+      getTextNodesIn = function(node, includeWhitespaceNodes) {
+        var getTextNodes, textNodes, whitespace,
+          _this = this;
+
+        textNodes = [];
+        whitespace = /^\s*$/;
+        getTextNodes = function(node) {
+          var childNode, nidx, _ref, _results;
+
+          if (node.nodeType === ((typeof Node !== "undefined" && Node !== null ? Node.TEXT_NODE : void 0) || 3)) {
+            if (includeWhitespaceNodes || !whitespace.test(node.nodeValue)) {
+              return textNodes.push(node);
+            }
+          } else {
+            _ref = node.childNodes;
+            _results = [];
+            for (nidx in _ref) {
+              childNode = _ref[nidx];
+              _results.push(getTextNodes(childNode));
+            }
+            return _results;
+          }
+        };
+        getTextNodes(node);
+        return textNodes;
+      };
       elementMarkup = function(element) {
         var wrapper;
 
@@ -1136,20 +1164,28 @@
         return elementMarkup(wrap);
       };
       return this.each(function() {
-        var content, doneClass, exp_obj, exp_settings;
+        var doneClass, text_nodes;
 
         doneClass = "elementized";
         if (!$(this).hasClass(doneClass)) {
-          content = $(this).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-          exp_settings = "g";
-          if (!settings.matchCase) {
-            exp_settings += "i";
-          }
-          exp_obj = new RegExp(regex, exp_settings);
-          content = content.replace(exp_obj, replaceCallback);
+          text_nodes = getTextNodesIn(this, false);
+          log(text_nodes);
+          $(text_nodes).each(function() {
+            var content, parent, replacement, text_node;
+
+            text_node = this;
+            content = text_node.data;
+            content = content.replace(regex, replaceCallback);
+            if (content !== text_node.data) {
+              replacement = document.createElement("span");
+              replacement.innerHTML = content;
+              parent = text_node.parentNode;
+              log(parent);
+              return parent.replaceChild(replacement, text_node);
+            }
+          });
           $(this).addClass(doneClass);
-          $(this).addClass("style-" + settings.style);
-          return $(this).html(content);
+          return $(this).addClass("style-" + settings.style);
         }
       });
     }
