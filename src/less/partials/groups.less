@@ -1,0 +1,198 @@
+@import "colors.less";
+
+// == Metal ==
+.metal (@color: @metalColor) {
+    background: @color;
+}
+
+// Inner transition metal
+.inner-transition-metal (@color: @innerTransitionMetalColor) {
+    .metal;
+    background: @color;
+}
+
+// == Metalloids ==
+.metalloid (@color: @metalloidColor) {
+    background: @color;
+}
+&.period-2.group-13,
+&.period-3.group-14,
+&.period-4.group-14,
+&.period-4.group-15,
+&.period-5.group-15,
+&.period-5.group-16 {
+    .metalloid;
+}
+
+// == Nonmetal ==
+.nonmetal (@color: @nonmetalColor) {
+    background: @color;
+}
+
+// == Unknown chemical properties ==
+.unknown-chemical-properties (@color: @unknownChemicalPropertiesColor) {
+    background: @color;
+}
+&.period-7 {
+    &.group-9,
+    &.group-,
+    &.group-11,
+    &.group-13,
+    &.group-14,
+    &.group-15,
+    &.group-16,
+    &.group-17,
+    &.group-18,
+    {
+        .unknown-chemical-properties;
+    }
+}
+
+
+
+// Alkali metals
+.alkali-metal (@color: @alkaliMetalColor) {
+    .metal;
+    background: @color;
+}
+&.group-1 {
+    &.period-2,
+    &.period-3,
+    &.period-4,
+    &.period-5,
+    &.period-6,
+    &.period-7 {
+        .alkali-metal;
+    }
+}
+
+// Alkaline earth metal
+.alkaline-earth-metal (@color: @alkalineEarthMetalColor) {
+    .metal;
+    background: @color;
+}
+&.group-2 {
+    &.period-2,
+    &.period-3,
+    &.period-4,
+    &.period-5,
+    &.period-6,
+    &.period-7 {
+        .alkaline-earth-metal;
+    }
+}
+
+
+
+// Lanthanides & Acti­nides
+.lanthanide (@color: @lanthanideColor) {
+    .inner-transition-metal;
+    background: @color;
+}
+.actinide (@color: @actinideColor) {
+    .inner-transition-metal;
+    background: @color;
+}
+&.group-0 {
+    &.period-6 {
+        .lanthanide;
+    }
+
+    &.period-7 {
+        .actinide;
+    }
+}
+&.group-3.period-6 {
+    .lanthanide;
+}
+
+// Transition metal
+.transition-metal (@color: @transitionMetalColor) {
+    .metal;
+    background: @color;
+}
+&.period-4.group-3,
+&.period-5.group-3 {
+    .transition-metal;
+}
+&.period-4,
+&.period-5,
+&.period-6,
+&.period-7 {
+    &.group-4,
+    &.group-5,
+    &.group-6,
+    &.group-7,
+    &.group-8,
+    &.group-9,
+    &.group-10,
+    &.group-11,
+    &.group-12 {
+        .transition-metal;
+    }
+}
+
+// Post-​transition metal
+.post-transition-metal (@color: @postTransitionMetalColor) {
+    .metal;
+    background: @color;
+}
+&.period-3.group-13,
+&.period-4.group-13,
+&.period-4.group-14,
+&.period-5.group-13,
+&.period-5.group-14,
+&.period-5.group-15,
+&.period-6.group-13,
+&.period-6.group-14,
+&.period-6.group-15,
+&.period-6.group-16 {
+    .post-transition-metal;
+}
+
+
+// Other nonmetals
+.other-nonmetal (@color: @otherNonmetalColor) {
+    .nonmetal;
+    background: @color;
+}
+&.period-1.group-1,
+&.period-2.group-14,
+&.period-2.group-15,
+&.period-2.group-16,
+&.period-3.group-15,
+&.period-3.group-16,
+&.period-4.group-16 {
+    .other-nonmetal;
+}
+
+// Halogens
+.halogen (@color: @halogenColor) {
+    .nonmetal;
+    background: @color;
+}
+&.group-17 {
+    &.period-2,
+    &.period-3,
+    &.period-4,
+    &.period-5,
+    &.period-6 {
+        .halogen;
+    }
+}
+
+// Noble gases
+.noble-gas (@color: @nobleGasColor) {
+    .nonmetal;
+    background: @color;
+}
+&.group-18 {
+    &.group-1,
+    &.period-2,
+    &.period-3,
+    &.period-4,
+    &.period-5,
+    &.period-6 {
+        .noble-gas;
+    }
+}
