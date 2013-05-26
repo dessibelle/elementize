@@ -21,4 +21,4 @@ $('p').elementize({
 
 ## Known limitations
 
-Currently all each text node replaced will be wrapped in a `span`, which in turn contains another `span.elementize-element`, while it should be possible to just skip the top level `span` and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous `span` elements.
+Currently each text node replaced will be wrapped in a `span`, which in turn contains another `span.elementize-element`, while it should be possible to just skip the top level `span` and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous `span` elements.
