@@ -15,7 +15,7 @@ $.fn.extend
     settings =
       matchCase: false
       firstWordOnly: false
-      numberAsSpan: true
+      numberAsSpan: false
       debug: false
       style: 'colorize'
 
