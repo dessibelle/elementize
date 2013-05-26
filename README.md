@@ -13,7 +13,7 @@ The below code illustrates an example usage, all available options and their def
         matchCase: true,            // Matches only "Be", not "BE", "be" or "bE"
         firstWordOnly: false,       // Matches only the first word in the element contents
         numberAsSpan: false,        // Inserts atomic number in a span element rather than data-attribute and :after pseudo-element
-        style: 'colorize'           // 'clear', 'breaking-bad'
+        style: 'colorize'           // Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'
     });
 
 ##Known limitations
