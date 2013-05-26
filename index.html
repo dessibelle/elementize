@@ -7,7 +7,6 @@
     <meta name="description" content="Elementize : jQuery plugin used to replace any chemical element symbols encountered inside the matched elements with periodic table blocks, inspired by the Breaking Bad intro titles" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="stylesheet" href="css/elementize.min.css">
 
     <title>Elementize</title>
   </head>
@@ -47,7 +46,6 @@
 
 <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">elementize</span><span class="p">({</span>
     <span class="nx">matchCase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// Matches only "Be", not "BE", "be" or "bE"</span>
-    <span class="nx">firstWordOnly</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>       <span class="c1">// Matches only the first word in the element contents</span>
     <span class="nx">numberAsSpan</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="c1">// Inserts atomic number in a span element rather than data-attribute and :after pseudo-element</span>
     <span class="nx">style</span><span class="o">:</span> <span class="s1">'colorize'</span>           <span class="c1">// Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'</span>
 <span class="p">});</span>
@@ -55,7 +53,7 @@
 
 <h2>Known limitations</h2>
 
-<p>Currently all contained HTML elements in matched elements will be replaced by their respective <code>innerText</code>, as <code>innerText</code> rather than <code>innerHTML</code> is used for reading their contents. The reason for this is as to avoid replacing the HTML element themselves, as well as their attributes. It is there for recommended that you narrow down your selector as much as possible to only target exactly the elements you want to elementize.</p>
+<p>Currently all each text node replaced will be wrapped in a <code>span</code>, which in turn contains another <code>span.elementize-element</code>, while it should be possible to just skip the top level <code>span</code> and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous <code>span</code> elements.</p>
       </section>
     </div>
 
@@ -67,22 +65,7 @@
       </footer>
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/elementize.min.js"></script>
-
-    <script>
-
-      $(function() {
-        $("#project_title").elementize();
-
-        $("#project_tagline").elementize({
-          matchCase: true,
-          style: 'clear'
-        });
-
-      });
-
-    </script>
+    
 
   </body>
 </html>
