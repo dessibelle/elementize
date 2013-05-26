@@ -1,5 +1,6 @@
 @import "partials/style-colorize.less";
 @import "partials/style-breaking-bad.less";
+@import "partials/mixins.less";
 
 
 .elementize-element {
@@ -15,11 +16,13 @@
   text-align: center;
 
   position: relative;
-  box-shadow: inset 0 0 0.5em rgba(0, 0, 0, 0.4);
+  .box-shadow(inset 0 0 0.5em rgba(0, 0, 0, 0.4));
 
   &:after {
     content: attr(data-number);
   }
+
+  line-height: 1;
 
   &:after,
   .number {
