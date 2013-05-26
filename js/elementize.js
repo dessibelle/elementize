@@ -46,6 +46,15 @@
           weight: 6.94,
           density: 0.534
         },
+        br: {
+          name: 'Bromine',
+          atomic_number: 35,
+          symbol: 'Br',
+          group: 17,
+          period: 4,
+          weight: 79.904,
+          density: 3.122
+        },
         be: {
           name: 'Beryllium',
           atomic_number: 4,
@@ -54,6 +63,15 @@
           period: 2,
           weight: 9.012182,
           density: 1.85
+        },
+        ba: {
+          name: 'Barium',
+          atomic_number: 56,
+          symbol: 'Ba',
+          group: 2,
+          period: 6,
+          weight: 137.327,
+          density: 3.594
         },
         b: {
           name: 'Boron',
@@ -325,15 +343,6 @@
           weight: 78.96,
           density: 4.809
         },
-        br: {
-          name: 'Bromine',
-          atomic_number: 35,
-          symbol: 'Br',
-          group: 17,
-          period: 4,
-          weight: 79.904,
-          density: 3.122
-        },
         kr: {
           name: 'Krypton',
           atomic_number: 36,
@@ -513,15 +522,6 @@
           period: 6,
           weight: 132.9054519,
           density: 1.873
-        },
-        ba: {
-          name: 'Barium',
-          atomic_number: 56,
-          symbol: 'Ba',
-          group: 2,
-          period: 6,
-          weight: 137.327,
-          density: 3.594
         },
         la: {
           name: 'Lanthanum',
