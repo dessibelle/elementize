@@ -1,8 +1,11 @@
 #Elementize
 
-jQuery plugin used to insert blocks for chemical elements whenever those are 
+jQuery plugin used to replace any chemical element symbols encountered inside the matched elements with periodic table blocks, inspired by the Breaking Bad intro titles.
 
 ##Usage
+
+1. Add elemetize.min.js and elemetize.min.css to you markup
+2. Use $(...).elementize() on the elements you would like to elementize 
 
 The below code illustrates an example usage, all available options and their default values.
 
