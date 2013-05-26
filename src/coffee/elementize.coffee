@@ -14,14 +14,14 @@ $.fn.extend
     # Default settings
     settings =
       matchCase: false
-      firstWordOnly: false
       numberAsSpan: false
       debug: false
       style: 'colorize'
 
     # List of symbols
     symbols = []
-    regex = ""
+    regex_string = ""
+    regex = null
 
     # Periodic table (from http://en.wikipedia.org/wiki/List_of_elements)
     periodic_table =
@@ -156,10 +156,13 @@ $.fn.extend
       for key, value of periodic_table
         symbols.push value.symbol
 
-      regex = "(" + ( symbols.join "|" ) + ")"
+      regex_string = "(" + ( symbols.join "|" ) + ")"
 
-      if settings.firstWordOnly
-        regex = "^" + regex
+      exp_settings = "g"
+      exp_settings += "i" if not settings.matchCase
+
+      regex = new RegExp regex_string, exp_settings
+
 
     # Simple logger.
     log = (msg) ->
@@ -170,6 +173,23 @@ $.fn.extend
     log "Elementize => Match case: #{settings.matchCase}"
     log "Elementize => Match initial: #{settings.matchInitial}"
     log "Elementize => Symbols: #{symbols}"
+
+
+    getTextNodesIn = (node, includeWhitespaceNodes) ->
+      textNodes = []
+      whitespace = /^\s*$/
+
+      getTextNodes = (node) =>
+        if node.nodeType == (Node?.TEXT_NODE or 3)
+          if includeWhitespaceNodes or !whitespace.test node.nodeValue
+            textNodes.push node
+        else
+          for nidx, childNode of node.childNodes
+            getTextNodes childNode
+
+      getTextNodes node
+      return textNodes
+
 
     elementMarkup = (element) ->
       wrapper = document.createElement "div"
@@ -209,17 +229,32 @@ $.fn.extend
       doneClass = "elementized"
       if not $(this).hasClass(doneClass)
 
-        content = $(this).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '')
+        text_nodes = getTextNodesIn this, false
 
-        exp_settings = "g"
-        exp_settings += "i" if not settings.matchCase
+        log text_nodes
 
-        exp_obj = new RegExp regex, exp_settings
-        content = content.replace exp_obj, replaceCallback
+        $(text_nodes).each( () ->
+          text_node = this
+
+          content = text_node.data
+          content = content.replace regex, replaceCallback
+
+          if content != text_node.data
+
+            replacement = document.createElement "span"
+            replacement.innerHTML = content
+
+            parent = text_node.parentNode
+
+            log parent
+            parent.replaceChild replacement, text_node
+        )
 
         $(this).addClass doneClass
         $(this).addClass "style-#{settings.style}"
-        $(this).html content
+
+        # content = content.replace regex, replaceCallback
+        # $(this).html content
 
 
 
