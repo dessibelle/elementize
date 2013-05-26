@@ -4,7 +4,7 @@ Javascript (jQuery plugin) for replacing any chemical element symbols encountere
 
 ##Usage
 
-1. Add `elemetize.min.js` and `elemetize.min.css` to you markup
+1. Add `elementize.min.js` and `elementize.min.css` to you markup
 2. Use `$(...).elementize();` on the elements you would like to elementize 
 
 The below code illustrates an example usage, all available options and their default values.
