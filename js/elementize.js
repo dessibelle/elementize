@@ -1,17 +1,20 @@
 (function() {
-  var $;
+  var $,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $ = jQuery;
 
   $.fn.extend({
     elementize: function(options) {
-      var elementMarkup, initialize, log, periodic_table, regex, replaceCallback, settings, symbols;
+      var elementMarkup, initialize, log, periodic_table, regex, replaceCallback, settings, styles, symbols;
 
+      styles = ['clear', 'colorize', 'breaking-bad'];
       settings = {
         matchCase: false,
         firstWordOnly: false,
-        numberInPseudoElement: true,
-        debug: false
+        numberAsSpan: true,
+        debug: false,
+        style: 'colorize'
       };
       symbols = [];
       regex = "";
@@ -1080,8 +1083,11 @@
         }
       };
       initialize = function(options) {
-        var key, value;
+        var key, value, _ref;
 
+        if (((options != null ? options.style : void 0) != null) && (_ref = !options.style, __indexOf.call(styles, _ref) >= 0)) {
+          options.style = null;
+        }
         settings = $.extend(settings, options);
         for (key in periodic_table) {
           value = periodic_table[key];
@@ -1113,19 +1119,18 @@
 
         symbol = match.toLowerCase();
         element_data = periodic_table[symbol];
-        $(this).addClass('elementized');
         wrap = document.createElement("span");
         wrap.setAttribute("class", "elementize-element group-" + element_data.group + " period-" + element_data.period + " element-" + element_data.atomic_number);
         symbol = document.createElement("span");
         symbol.innerText = element_data.symbol;
         symbol.setAttribute("class", "symbol");
-        if (settings.numberInPseudoElement) {
-          wrap.setAttribute("data-number", element_data.atomic_number);
-        } else {
+        if (settings.numberAsSpan) {
           number = document.createElement("span");
           number.innerText = element_data.atomic_number;
           number.setAttribute("class", "number");
           wrap.appendChild(number);
+        } else {
+          wrap.setAttribute("data-number", element_data.atomic_number);
         }
         wrap.appendChild(symbol);
         return elementMarkup(wrap);
@@ -1140,6 +1145,8 @@
         }
         exp_obj = new RegExp(regex, exp_settings);
         content = content.replace(exp_obj, replaceCallback);
+        $(this).addClass("elementized");
+        $(this).addClass("style-" + settings.style);
         return $(this).html(content);
       });
     }

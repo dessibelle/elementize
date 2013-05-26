@@ -5,12 +5,19 @@ $ = jQuery
 $.fn.extend
   elementize: (options) ->
 
+    styles = [
+      'clear'
+      'colorize'
+      'breaking-bad'
+    ]
+
     # Default settings
     settings =
       matchCase: false
       firstWordOnly: false
-      numberInPseudoElement: true
+      numberAsSpan: true
       debug: false
+      style: 'colorize'
 
     # List of symbols
     symbols = []
@@ -139,6 +146,9 @@ $.fn.extend
 
     initialize = (options) ->
 
+      if options?.style? and not options.style in styles
+        options.style = null
+
       # Merge default settings with options.
       settings = $.extend settings, options
 
@@ -171,8 +181,6 @@ $.fn.extend
       symbol = match.toLowerCase()
       element_data = periodic_table[symbol]
 
-      $(this).addClass 'elementized'
-
       # Wrapper element
       wrap = document.createElement "span"
       wrap.setAttribute "class", "elementize-element group-#{element_data.group} period-#{element_data.period} element-#{element_data.atomic_number}"
@@ -183,13 +191,13 @@ $.fn.extend
       symbol.setAttribute "class", "symbol"
 
       # Number attribute / element
-      if settings.numberInPseudoElement
-        wrap.setAttribute "data-number", element_data.atomic_number
-      else
+      if settings.numberAsSpan
         number = document.createElement "span"
         number.innerText = element_data.atomic_number
         number.setAttribute "class", "number"
         wrap.appendChild number
+      else
+        wrap.setAttribute "data-number", element_data.atomic_number
 
       wrap.appendChild symbol
 
@@ -206,6 +214,8 @@ $.fn.extend
       exp_obj = new RegExp regex, exp_settings
       content = content.replace exp_obj, replaceCallback
 
+      $(this).addClass "elementized"
+      $(this).addClass "style-#{settings.style}"
       $(this).html content
 
 
