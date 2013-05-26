@@ -1136,18 +1136,21 @@
         return elementMarkup(wrap);
       };
       return this.each(function() {
-        var content, exp_obj, exp_settings;
+        var content, doneClass, exp_obj, exp_settings;
 
-        content = $(this).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-        exp_settings = "g";
-        if (!settings.matchCase) {
-          exp_settings += "i";
+        doneClass = "elementized";
+        if (!$(this).hasClass(doneClass)) {
+          content = $(this).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+          exp_settings = "g";
+          if (!settings.matchCase) {
+            exp_settings += "i";
+          }
+          exp_obj = new RegExp(regex, exp_settings);
+          content = content.replace(exp_obj, replaceCallback);
+          $(this).addClass(doneClass);
+          $(this).addClass("style-" + settings.style);
+          return $(this).html(content);
         }
-        exp_obj = new RegExp(regex, exp_settings);
-        content = content.replace(exp_obj, replaceCallback);
-        $(this).addClass("elementized");
-        $(this).addClass("style-" + settings.style);
-        return $(this).html(content);
       });
     }
   });

@@ -206,17 +206,21 @@ $.fn.extend
     # _Insert magic here._
     return @each ()->
 
-      content = $(this).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '')
+      doneClass = "elementized"
+      if not $(this).hasClass(doneClass)
 
-      exp_settings = "g"
-      exp_settings += "i" if not settings.matchCase
+        content = $(this).text().replace(/^\s\s*/, '').replace(/\s\s*$/, '')
 
-      exp_obj = new RegExp regex, exp_settings
-      content = content.replace exp_obj, replaceCallback
+        exp_settings = "g"
+        exp_settings += "i" if not settings.matchCase
 
-      $(this).addClass "elementized"
-      $(this).addClass "style-#{settings.style}"
-      $(this).html content
+        exp_obj = new RegExp regex, exp_settings
+        content = content.replace exp_obj, replaceCallback
+
+        $(this).addClass doneClass
+        $(this).addClass "style-#{settings.style}"
+        $(this).html content
+
 
 
 
