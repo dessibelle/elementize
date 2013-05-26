@@ -19,14 +19,41 @@
       symbols = [];
       regex = "";
       periodic_table = {
-        h: {
-          name: 'Hydrogen',
-          atomic_number: 1,
-          symbol: 'H',
-          group: 1,
-          period: 1,
-          weight: 1.008,
-          density: 0.00008988
+        uut: {
+          name: 'Ununtrium',
+          atomic_number: 113,
+          symbol: 'Uut',
+          group: 13,
+          period: 7,
+          weight: 286,
+          density: 0
+        },
+        uup: {
+          name: 'Ununpentium',
+          atomic_number: 115,
+          symbol: 'Uup',
+          group: 15,
+          period: 7,
+          weight: 288,
+          density: 0
+        },
+        uus: {
+          name: 'Ununseptium',
+          atomic_number: 117,
+          symbol: 'Uus',
+          group: 17,
+          period: 7,
+          weight: 294,
+          density: 0
+        },
+        uuo: {
+          name: 'Ununoctium',
+          atomic_number: 118,
+          symbol: 'Uuo',
+          group: 18,
+          period: 7,
+          weight: 294,
+          density: 0
         },
         he: {
           name: 'Helium',
@@ -73,51 +100,6 @@
           weight: 137.327,
           density: 3.594
         },
-        b: {
-          name: 'Boron',
-          atomic_number: 5,
-          symbol: 'B',
-          group: 13,
-          period: 2,
-          weight: 10.81,
-          density: 2.34
-        },
-        c: {
-          name: 'Carbon',
-          atomic_number: 6,
-          symbol: 'C',
-          group: 14,
-          period: 2,
-          weight: 12.011,
-          density: 2.267
-        },
-        n: {
-          name: 'Nitrogen',
-          atomic_number: 7,
-          symbol: 'N',
-          group: 15,
-          period: 2,
-          weight: 14.007,
-          density: 0.0012506
-        },
-        o: {
-          name: 'Oxygen',
-          atomic_number: 8,
-          symbol: 'O',
-          group: 16,
-          period: 2,
-          weight: 15.999,
-          density: 0.001429
-        },
-        f: {
-          name: 'Fluorine',
-          atomic_number: 9,
-          symbol: 'F',
-          group: 17,
-          period: 2,
-          weight: 18.9984032,
-          density: 0.001696
-        },
         ne: {
           name: 'Neon',
           atomic_number: 10,
@@ -163,24 +145,6 @@
           weight: 28.085,
           density: 2.3296
         },
-        p: {
-          name: 'Phosphorus',
-          atomic_number: 15,
-          symbol: 'P',
-          group: 15,
-          period: 3,
-          weight: 30.973762,
-          density: 1.82
-        },
-        s: {
-          name: 'Sulfur',
-          atomic_number: 16,
-          symbol: 'S',
-          group: 16,
-          period: 3,
-          weight: 32.06,
-          density: 2.067
-        },
         cl: {
           name: 'Chlorine',
           atomic_number: 17,
@@ -198,15 +162,6 @@
           period: 3,
           weight: 39.948,
           density: 0.0017837
-        },
-        k: {
-          name: 'Potassium',
-          atomic_number: 19,
-          symbol: 'K',
-          group: 1,
-          period: 4,
-          weight: 39.0983,
-          density: 0.862
         },
         ca: {
           name: 'Calcium',
@@ -234,15 +189,6 @@
           period: 4,
           weight: 47.867,
           density: 4.54
-        },
-        v: {
-          name: 'Vanadium',
-          atomic_number: 23,
-          symbol: 'V',
-          group: 5,
-          period: 4,
-          weight: 50.9415,
-          density: 6.11
         },
         cr: {
           name: 'Chromium',
@@ -370,15 +316,6 @@
           weight: 87.62,
           density: 2.64
         },
-        y: {
-          name: 'Yttrium',
-          atomic_number: 39,
-          symbol: 'Y',
-          group: 3,
-          period: 5,
-          weight: 88.90585,
-          density: 4.469
-        },
         zr: {
           name: 'Zirconium',
           atomic_number: 40,
@@ -495,15 +432,6 @@
           period: 5,
           weight: 127.60,
           density: 6.232
-        },
-        i: {
-          name: 'Iodine',
-          atomic_number: 53,
-          symbol: 'I',
-          group: 17,
-          period: 5,
-          weight: 126.90447,
-          density: 4.93
         },
         xe: {
           name: 'Xenon',
@@ -676,15 +604,6 @@
           weight: 180.94788,
           density: 16.654
         },
-        w: {
-          name: 'Tungsten',
-          atomic_number: 74,
-          symbol: 'W',
-          group: 6,
-          period: 6,
-          weight: 183.84,
-          density: 19.25
-        },
         re: {
           name: 'Rhenium',
           atomic_number: 75,
@@ -837,15 +756,6 @@
           period: 7,
           weight: 231.03588,
           density: 15.37
-        },
-        u: {
-          name: 'Uranium',
-          atomic_number: 92,
-          symbol: 'U',
-          group: 0,
-          period: 7,
-          weight: 238.02891,
-          density: 18.95
         },
         np: {
           name: 'Neptunium',
@@ -1027,15 +937,6 @@
           weight: 285,
           density: 0
         },
-        uut: {
-          name: 'Ununtrium',
-          atomic_number: 113,
-          symbol: 'Uut',
-          group: 13,
-          period: 7,
-          weight: 286,
-          density: 0
-        },
         fl: {
           name: 'Flerovium',
           atomic_number: 114,
@@ -1043,15 +944,6 @@
           group: 14,
           period: 7,
           weight: 289,
-          density: 0
-        },
-        uup: {
-          name: 'Ununpentium',
-          atomic_number: 115,
-          symbol: 'Uup',
-          group: 15,
-          period: 7,
-          weight: 288,
           density: 0
         },
         lv: {
@@ -1063,23 +955,131 @@
           weight: 293,
           density: 0
         },
-        uus: {
-          name: 'Ununseptium',
-          atomic_number: 117,
-          symbol: 'Uus',
-          group: 17,
-          period: 7,
-          weight: 294,
-          density: 0
+        b: {
+          name: 'Boron',
+          atomic_number: 5,
+          symbol: 'B',
+          group: 13,
+          period: 2,
+          weight: 10.81,
+          density: 2.34
         },
-        uuo: {
-          name: 'Ununoctium',
-          atomic_number: 118,
-          symbol: 'Uuo',
-          group: 18,
+        c: {
+          name: 'Carbon',
+          atomic_number: 6,
+          symbol: 'C',
+          group: 14,
+          period: 2,
+          weight: 12.011,
+          density: 2.267
+        },
+        n: {
+          name: 'Nitrogen',
+          atomic_number: 7,
+          symbol: 'N',
+          group: 15,
+          period: 2,
+          weight: 14.007,
+          density: 0.0012506
+        },
+        o: {
+          name: 'Oxygen',
+          atomic_number: 8,
+          symbol: 'O',
+          group: 16,
+          period: 2,
+          weight: 15.999,
+          density: 0.001429
+        },
+        f: {
+          name: 'Fluorine',
+          atomic_number: 9,
+          symbol: 'F',
+          group: 17,
+          period: 2,
+          weight: 18.9984032,
+          density: 0.001696
+        },
+        h: {
+          name: 'Hydrogen',
+          atomic_number: 1,
+          symbol: 'H',
+          group: 1,
+          period: 1,
+          weight: 1.008,
+          density: 0.00008988
+        },
+        p: {
+          name: 'Phosphorus',
+          atomic_number: 15,
+          symbol: 'P',
+          group: 15,
+          period: 3,
+          weight: 30.973762,
+          density: 1.82
+        },
+        s: {
+          name: 'Sulfur',
+          atomic_number: 16,
+          symbol: 'S',
+          group: 16,
+          period: 3,
+          weight: 32.06,
+          density: 2.067
+        },
+        k: {
+          name: 'Potassium',
+          atomic_number: 19,
+          symbol: 'K',
+          group: 1,
+          period: 4,
+          weight: 39.0983,
+          density: 0.862
+        },
+        v: {
+          name: 'Vanadium',
+          atomic_number: 23,
+          symbol: 'V',
+          group: 5,
+          period: 4,
+          weight: 50.9415,
+          density: 6.11
+        },
+        y: {
+          name: 'Yttrium',
+          atomic_number: 39,
+          symbol: 'Y',
+          group: 3,
+          period: 5,
+          weight: 88.90585,
+          density: 4.469
+        },
+        i: {
+          name: 'Iodine',
+          atomic_number: 53,
+          symbol: 'I',
+          group: 17,
+          period: 5,
+          weight: 126.90447,
+          density: 4.93
+        },
+        w: {
+          name: 'Tungsten',
+          atomic_number: 74,
+          symbol: 'W',
+          group: 6,
+          period: 6,
+          weight: 183.84,
+          density: 19.25
+        },
+        u: {
+          name: 'Uranium',
+          atomic_number: 92,
+          symbol: 'U',
+          group: 0,
           period: 7,
-          weight: 294,
-          density: 0
+          weight: 238.02891,
+          density: 18.95
         }
       };
       initialize = function(options) {
