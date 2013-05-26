@@ -1,3 +1,0 @@
-[submodule "external/chemistry"]
-	path = external/chemistry
-	url = git@github.com:diniska/chemistry
