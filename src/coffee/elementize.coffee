@@ -14,7 +14,9 @@ $.fn.extend
     # Default settings
     settings =
       matchCase: false
-      numberAsSpan: false
+      noPseudoElements: false
+      displayAtomicNumber: true
+      displayAtomicWeight: false
       debug: false
       style: 'colorize'
 
@@ -247,10 +249,15 @@ $.fn.extend
       symbol = match.toLowerCase()
       element_data = periodic_table[symbol]
 
+      classes = elementGroupsForPeriodAndGroup element_data.period, element_data.group
 
+      if settings.displayAtomicNumber
+        classes.push "display-atomic-number"
+      if settings.displayAtomicWeight
+        classes.push "display-atomic-weight"
 
       class_list = "elementize-element group-#{element_data.group} period-#{element_data.period} element-#{element_data.atomic_number}"
-      class_list += " " + (elementGroupsForPeriodAndGroup element_data.period, element_data.group).join(" ")
+      class_list += " " + classes.join(" ")
 
       # Wrapper element
       wrap = document.createElement "span"
@@ -260,14 +267,23 @@ $.fn.extend
       symbol.innerText = element_data.symbol
       symbol.setAttribute "class", "symbol"
 
+      atomic_number = element_data.atomic_number
+      atomic_weight = element_data.weight.toFixed(1)
+
       # Number attribute / element
-      if settings.numberAsSpan
+      if settings.noPseudoElements
         number = document.createElement "span"
-        number.innerText = element_data.atomic_number
+        number.innerText = atomic_number
         number.setAttribute "class", "number"
         wrap.appendChild number
+
+        weight = document.createElement "span"
+        weight.innerText = atomic_weight
+        weight.setAttribute "class", "weight"
+        wrap.appendChild weight
       else
-        wrap.setAttribute "data-number", element_data.atomic_number
+        wrap.setAttribute "data-number", atomic_number
+        wrap.setAttribute "data-weight", atomic_weight
 
       wrap.appendChild symbol
 

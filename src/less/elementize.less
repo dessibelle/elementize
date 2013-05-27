@@ -18,18 +18,46 @@
   position: relative;
   .box-shadow(inset 0 0 0.5em rgba(0, 0, 0, 0.4));
 
-  &:after {
+  line-height: 1;
+  overflow: hidden;
+
+  &.display-atomic-number {
+    &:before,
+    .number {
+      display: block;
+    }
+  }
+
+  &.display-atomic-weight {
+    &:after,
+    .weight {
+      display: block;
+    }
+  }
+
+  &:before {
     content: attr(data-number);
   }
 
-  line-height: 1;
+  &:after {
+    content: attr(data-weight);
+  }
+
+  &:before,
+  &:after,
+  .number,
+  .weight {
+    position: absolute;
+    top: 0.15em;
+    right: 0.15em;
+    font-size: 0.35em;
+    display: none;
+  }
 
   &:after,
-  .number {
-    position: absolute;
-    top: 0.2em;
-    right: 0.2em;
-    font-size: 0.4em;
+  .weight {
+    top: auto;
+    bottom: 0.15em;
   }
 
 }

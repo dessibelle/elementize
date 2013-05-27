@@ -11,7 +11,9 @@
       styles = ['clear', 'colorize', 'breaking-bad'];
       settings = {
         matchCase: false,
-        numberAsSpan: false,
+        noPseudoElements: false,
+        displayAtomicNumber: true,
+        displayAtomicWeight: false,
         debug: false,
         style: 'colorize'
       };
@@ -1183,24 +1185,38 @@
         return wrapper.innerHTML;
       };
       replaceCallback = function(match, contents, offset, s) {
-        var class_list, element_data, number, symbol, wrap;
+        var atomic_number, atomic_weight, class_list, classes, element_data, number, symbol, weight, wrap;
 
         symbol = match.toLowerCase();
         element_data = periodic_table[symbol];
+        classes = elementGroupsForPeriodAndGroup(element_data.period, element_data.group);
+        if (settings.displayAtomicNumber) {
+          classes.push("display-atomic-number");
+        }
+        if (settings.displayAtomicWeight) {
+          classes.push("display-atomic-weight");
+        }
         class_list = "elementize-element group-" + element_data.group + " period-" + element_data.period + " element-" + element_data.atomic_number;
-        class_list += " " + (elementGroupsForPeriodAndGroup(element_data.period, element_data.group)).join(" ");
+        class_list += " " + classes.join(" ");
         wrap = document.createElement("span");
         wrap.setAttribute("class", class_list);
         symbol = document.createElement("span");
         symbol.innerText = element_data.symbol;
         symbol.setAttribute("class", "symbol");
-        if (settings.numberAsSpan) {
+        atomic_number = element_data.atomic_number;
+        atomic_weight = element_data.weight.toFixed(1);
+        if (settings.noPseudoElements) {
           number = document.createElement("span");
-          number.innerText = element_data.atomic_number;
+          number.innerText = atomic_number;
           number.setAttribute("class", "number");
           wrap.appendChild(number);
+          weight = document.createElement("span");
+          weight.innerText = atomic_weight;
+          weight.setAttribute("class", "weight");
+          wrap.appendChild(weight);
         } else {
-          wrap.setAttribute("data-number", element_data.atomic_number);
+          wrap.setAttribute("data-number", atomic_number);
+          wrap.setAttribute("data-weight", atomic_weight);
         }
         wrap.appendChild(symbol);
         return elementMarkup(wrap);
