@@ -31,6 +31,7 @@
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
+
       <section id="main_content" class="inner">
               <h1>Elementize</h1>
 
@@ -46,9 +47,11 @@
       </ol><p>The below code illustrates an example usage, all available options and their default values.</p>
 
       <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">elementize</span><span class="p">({</span>
-          <span class="nx">matchCase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>            <span class="c1">// Matches only "Be", not "BE", "be" or "bE"</span>
-          <span class="nx">numberAsSpan</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="c1">// Inserts atomic number in a span element rather than data-attribute and :after pseudo-element</span>
-          <span class="nx">style</span><span class="o">:</span> <span class="s1">'colorize'</span>           <span class="c1">// Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'</span>
+          <span class="nx">matchCase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>                <span class="c1">// Matches only "Be", not "BE", "be" or "bE"</span>
+          <span class="nx">displayAtomicNumber</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>      <span class="c1">// Controls display of atomic number in the top right corner</span>
+          <span class="nx">displayAtomicWeight</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="c1">// Controls display of atomic weight in the bottom right corner</span>
+          <span class="nx">noPseudoElements</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="c1">// Inserts atomic number and weight in a span element rather than data-attribute and :before/:after pseudo-elements</span>
+          <span class="nx">style</span><span class="o">:</span> <span class="s1">'colorize'</span>               <span class="c1">// Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'</span>
       <span class="p">});</span>
       </pre></div>
 
@@ -58,6 +61,7 @@
 
       <p>Currently each text node replaced will be wrapped in a <code>span</code>, which in turn contains another <code>span.elementize-element</code>, while it should be possible to just skip the top level <code>span</code> and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous <code>span</code> elements.</p>
             </section>
+
     </div>
 
     <!-- FOOTER  -->
