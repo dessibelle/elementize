@@ -19,7 +19,7 @@ $('p').elementize({
 });
 ```
 
-Symbols found inside the matched elements will be wrapped in a `span.elementize-element` block container and a `span.symbol` symbol wrapper. The atomic number will be stored as a `data`-attribute on the block container, or a `span.number` element depending on your settings. The outer `span.elementize-element` wrapper will have classes signifying their properties, such as `.period-[1-7]`, `.group-[0-18]` and one or more despriptive names such as `.halogon` or `.alkali-metal`, facilitating highlighting of specific element groups etc.
+Symbols found inside the matched elements will be wrapped in a `span.elementize-element` (the block) and a `span.symbol` (the symbol). The atomic number will be stored as a `data`-attribute on the block container, or a `span.number` element depending on your settings. In addition, the outer `span.elementize-element` wrapper will have classes signifying element properties, such as `period-[1-7]`, `group-[0-18]` along with one or more despriptive names such as `halogon` or `alkali-metal`, facilitating highlighting of specific element groups etc.
 
 ## Known limitations
 
