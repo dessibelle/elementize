@@ -46,14 +46,14 @@
       <li>Use <code>$(...).elementize();</code> on the elements you would like to elementize </li>
       </ol><p>The below code illustrates an example usage, all available options and their default values.</p>
 
-      <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">elementize</span><span class="p">({</span>
-          <span class="nx">matchCase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>                <span class="c1">// Matches only "Be", not "BE", "be" or "bE"</span>
-          <span class="nx">displayAtomicNumber</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>      <span class="c1">// Controls display of atomic number in the top right corner</span>
-          <span class="nx">displayAtomicWeight</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="c1">// Controls display of atomic weight in the bottom right corner</span>
-          <span class="nx">noPseudoElements</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="c1">// Inserts atomic number and weight in a span element rather than data-attribute and :before/:after pseudo-elements</span>
-          <span class="nx">style</span><span class="o">:</span> <span class="s1">'colorize'</span>               <span class="c1">// Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'</span>
-      <span class="p">});</span>
-      </pre></div>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">elementize</span><span class="p">({</span>
+    <span class="nx">matchCase</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>                <span class="c1">// Matches only "Be", not "BE", "be" or "bE"</span>
+    <span class="nx">displayAtomicNumber</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>      <span class="c1">// Controls display of atomic number in the top right corner</span>
+    <span class="nx">displayAtomicWeight</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="c1">// Controls display of atomic weight in the bottom right corner</span>
+    <span class="nx">noPseudoElements</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="c1">// Inserts atomic number and weight in a span element rather than data-attribute and :before/:after pseudo-elements</span>
+    <span class="nx">style</span><span class="o">:</span> <span class="s1">'colorize'</span>               <span class="c1">// Any of the following coloring styles: 'colorize', 'breaking-bad', 'clear'</span>
+<span class="p">});</span>
+</pre></div>
 
       <p>Symbols found inside the matched elements will be wrapped in a <code>span.elementize-element</code> (the block) and a <code>span.symbol</code> (the symbol). The atomic number will be stored as a <code>data</code>-attribute on the block container, or a <code>span.number</code> element depending on your settings. In addition, the outer <code>span.elementize-element</code> wrapper will have classes signifying element properties, such as <code>period-[1-7]</code>, <code>group-[0-18]</code> along with one or more despriptive names such as <code>halogon</code> or <code>alkali-metal</code>, facilitating highlighting of specific element groups etc.</p>
 
