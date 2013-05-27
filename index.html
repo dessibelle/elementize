@@ -89,7 +89,9 @@
     <script>
 
       $(function() {
-        $("#project_title").elementize();
+        $("#project_title").elementize({
+          displayAtomicWeight: true
+        });
 
         $("#project_tagline").elementize({
           matchCase: true,
