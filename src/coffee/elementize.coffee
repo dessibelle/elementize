@@ -174,6 +174,52 @@ $.fn.extend
     log "Elementize => Match initial: #{settings.matchInitial}"
     log "Elementize => Symbols: #{symbols}"
 
+    elementGroupsForPeriodAndGroup = (period, group) ->
+      groups = []
+
+      if period == 7 and group in [9, 10, 11, 13, 14, 15, 16, 17, 18]
+        groups.push "unknown-chemical-properties"
+
+      else if group == 1 and period in [2, 3, 4, 5, 6, 7]
+        groups.push "alkali-metal"
+        groups.push "metal"
+
+      else if group == 2 and period in [2, 3, 4, 5, 6, 7]
+        groups.push "alkaline-earth-metal"
+        groups.push "metal"
+
+      else if (group == 0 and period in [6, 7]) or (group == 3 and period == 6)
+        groups.push "metal"
+        groups.push "inner-transition-metal"
+        g = "actinide"
+        g = "lanthanide" if period == 6
+        groups.push g
+
+      else if (period in [4, 5, 6, 7] and group in [4, 5, 6, 7, 8, 9, 10, 11, 12]) or (group == 3 and period in [4, 5])
+        groups.push "metal"
+        groups.push "transition-metal"
+
+      else if (period == 3 and group == 13) or (period in [4, 5] and group in [13, 14]) or (period == 5 and group == 15) or (period == 6 and group in [13, 14, 15, 16])
+        groups.push "metal"
+        groups.push "post-transition-metal"
+
+      else if (period == 2 and group == 13) or (group == 14 and period in [3, 4]) or (group == 15 and period in [4, 5]) or (period == 5 and group == 16)
+        groups.push "metalloid"
+
+      else if (period == 1 and group == 1) or (period == 2 and group in [14, 15, 16]) or (period == 3 and group in [15, 16]) or (period == 4 and group == 16)
+        groups.push "nonmetal"
+        groups.push "other-nonmetal"
+
+      else if group == 17 and period in [2, 3, 4, 5, 6]
+        groups.push "nonmetal"
+        groups.push "halogen"
+
+      else if group == 18 and period in [1, 2, 3, 4, 5, 6]
+        groups.push "nonmetal"
+        groups.push "noble-gas"
+
+      return groups
+
 
     getTextNodesIn = (node, includeWhitespaceNodes) ->
       textNodes = []
@@ -201,10 +247,14 @@ $.fn.extend
       symbol = match.toLowerCase()
       element_data = periodic_table[symbol]
 
+
+
+      class_list = "elementize-element group-#{element_data.group} period-#{element_data.period} element-#{element_data.atomic_number}"
+      class_list += " " + (elementGroupsForPeriodAndGroup element_data.period, element_data.group).join(" ")
+
       # Wrapper element
       wrap = document.createElement "span"
-      wrap.setAttribute "class", "elementize-element group-#{element_data.group} period-#{element_data.period} element-#{element_data.atomic_number}"
-
+      wrap.setAttribute "class", class_list
       # Symbol element
       symbol = document.createElement "span"
       symbol.innerText = element_data.symbol

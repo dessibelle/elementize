@@ -6,7 +6,7 @@
 
   $.fn.extend({
     elementize: function(options) {
-      var elementMarkup, getTextNodesIn, initialize, log, periodic_table, regex, regex_string, replaceCallback, settings, styles, symbols;
+      var elementGroupsForPeriodAndGroup, elementMarkup, getTextNodesIn, initialize, log, periodic_table, regex, regex_string, replaceCallback, settings, styles, symbols;
 
       styles = ['clear', 'colorize', 'breaking-bad'];
       settings = {
@@ -1109,6 +1109,46 @@
       log("Elementize => Match case: " + settings.matchCase);
       log("Elementize => Match initial: " + settings.matchInitial);
       log("Elementize => Symbols: " + symbols);
+      elementGroupsForPeriodAndGroup = function(period, group) {
+        var g, groups;
+
+        groups = [];
+        if (period === 7 && (group === 9 || group === 10 || group === 11 || group === 13 || group === 14 || group === 15 || group === 16 || group === 17 || group === 18)) {
+          groups.push("unknown-chemical-properties");
+        } else if (group === 1 && (period === 2 || period === 3 || period === 4 || period === 5 || period === 6 || period === 7)) {
+          groups.push("alkali-metal");
+          groups.push("metal");
+        } else if (group === 2 && (period === 2 || period === 3 || period === 4 || period === 5 || period === 6 || period === 7)) {
+          groups.push("alkaline-earth-metal");
+          groups.push("metal");
+        } else if ((group === 0 && (period === 6 || period === 7)) || (group === 3 && period === 6)) {
+          groups.push("metal");
+          groups.push("inner-transition-metal");
+          g = "actinide";
+          if (period === 6) {
+            g = "lanthanide";
+          }
+          groups.push(g);
+        } else if (((period === 4 || period === 5 || period === 6 || period === 7) && (group === 4 || group === 5 || group === 6 || group === 7 || group === 8 || group === 9 || group === 10 || group === 11 || group === 12)) || (group === 3 && (period === 4 || period === 5))) {
+          groups.push("metal");
+          groups.push("transition-metal");
+        } else if ((period === 3 && group === 13) || ((period === 4 || period === 5) && (group === 13 || group === 14)) || (period === 5 && group === 15) || (period === 6 && (group === 13 || group === 14 || group === 15 || group === 16))) {
+          groups.push("metal");
+          groups.push("post-transition-metal");
+        } else if ((period === 2 && group === 13) || (group === 14 && (period === 3 || period === 4)) || (group === 15 && (period === 4 || period === 5)) || (period === 5 && group === 16)) {
+          groups.push("metalloid");
+        } else if ((period === 1 && group === 1) || (period === 2 && (group === 14 || group === 15 || group === 16)) || (period === 3 && (group === 15 || group === 16)) || (period === 4 && group === 16)) {
+          groups.push("nonmetal");
+          groups.push("other-nonmetal");
+        } else if (group === 17 && (period === 2 || period === 3 || period === 4 || period === 5 || period === 6)) {
+          groups.push("nonmetal");
+          groups.push("halogen");
+        } else if (group === 18 && (period === 1 || period === 2 || period === 3 || period === 4 || period === 5 || period === 6)) {
+          groups.push("nonmetal");
+          groups.push("noble-gas");
+        }
+        return groups;
+      };
       getTextNodesIn = function(node, includeWhitespaceNodes) {
         var getTextNodes, textNodes, whitespace,
           _this = this;
@@ -1143,12 +1183,14 @@
         return wrapper.innerHTML;
       };
       replaceCallback = function(match, contents, offset, s) {
-        var element_data, number, symbol, wrap;
+        var class_list, element_data, number, symbol, wrap;
 
         symbol = match.toLowerCase();
         element_data = periodic_table[symbol];
+        class_list = "elementize-element group-" + element_data.group + " period-" + element_data.period + " element-" + element_data.atomic_number;
+        class_list += " " + (elementGroupsForPeriodAndGroup(element_data.period, element_data.group)).join(" ");
         wrap = document.createElement("span");
-        wrap.setAttribute("class", "elementize-element group-" + element_data.group + " period-" + element_data.period + " element-" + element_data.atomic_number);
+        wrap.setAttribute("class", class_list);
         symbol = document.createElement("span");
         symbol.innerText = element_data.symbol;
         symbol.setAttribute("class", "symbol");

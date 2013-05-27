@@ -19,6 +19,8 @@ $('p').elementize({
 });
 ```
 
+Symbols found inside the matched elements will be wrapped in a container element (`span.elementize-element` - the block) and a symbol wrapper (`span.symbol` the symbol). The atomic number will be stored as a `data`-attribute on the block container, along with other meta data such as period (`.period-[1-7]`), group (`.group-[0-18]`) and one or more despriptive names such as `.halogon` or `alkali-metal`, facilitating highlighting of specific element groups etc.
+
 ## Known limitations
 
 Currently each text node replaced will be wrapped in a `span`, which in turn contains another `span.elementize-element`, while it should be possible to just skip the top level `span` and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous `span` elements.
