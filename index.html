@@ -7,6 +7,7 @@
     <meta name="description" content="Elementize : jQuery plugin used to replace any chemical element symbols encountered inside the matched elements with periodic table blocks, inspired by the Breaking Bad intro titles" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="css/elementize.min.css">
 
     <title>Elementize</title>
   </head>
@@ -65,17 +66,22 @@
       </footer>
     </div>
 
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-41243043-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/elementize.min.js"></script>
 
+    <script>
+
+      $(function() {
+        $("#project_title").elementize();
+
+        $("#project_tagline").elementize({
+          matchCase: true,
+          style: 'clear'
+        });
+
+      });
+
+    </script>
 
   </body>
 </html>
