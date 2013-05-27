@@ -7,7 +7,6 @@
     <meta name="description" content="Elementize : jQuery plugin used to replace any chemical element symbols encountered inside the matched elements with periodic table blocks, inspired by the Breaking Bad intro titles" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="stylesheet" href="css/elementize.min.css">
 
     <title>Elementize</title>
   </head>
@@ -54,7 +53,7 @@
 
 <h2>Known limitations</h2>
 
-<p>Currently each text node replaced will be wrapped in a <code>span</code>, which in turn contains another <code>span.elementize-element</code>, while it should be possible to just skip the top level <code>span</code> and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous <code>span</code> elements.</p>
+<p>Currently all each text node replaced will be wrapped in a <code>span</code>, which in turn contains another <code>span.elementize-element</code>, while it should be possible to just skip the top level <code>span</code> and append both replaced and untouched text nodes to directly to their original parent node. This is due to the way replacements are made, and the only drawback appears to be superfluous <code>span</code> elements.</p>
       </section>
     </div>
 
@@ -66,22 +65,17 @@
       </footer>
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/elementize.min.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41243043-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-    <script>
-
-      $(function() {
-        $("#project_title").elementize();
-
-        $("#project_tagline").elementize({
-          matchCase: true,
-          style: 'clear'
-        });
-
-      });
-
-    </script>
 
   </body>
 </html>
