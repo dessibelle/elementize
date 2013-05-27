@@ -1,0 +1,45 @@
+{
+    "name": "elementize",
+    "title": "Elementize",
+    "description": "jQuery plugin used to replace any chemical element symbols encountered inside the matched elements with periodic table blocks, inspired by the Breaking Bad intro titles.",
+    "keywords": [
+        "periodic",
+        "table",
+        "chemical",
+        "element",
+        "elements"
+        "atomic",
+        "symbol",
+        "number",
+        "weight",
+        "chemistry",
+        "physics",
+        "breaking",
+        "bad"
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "Simon Fransson",
+        "url": "https://github.com/dessibelle/elementize/"
+    },
+    "maintainers": [
+        {
+            "name": "Simon Fransson",
+            "email": "simon@dessibelle.se",
+            "url": "http://dessibelle.se"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/dessibelle/elementize/blob/0.1.0/LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/dessibelle/elementize/issues",
+    "homepage": "http://dessibelle.github.io/elementize/",
+    "docs": "http://dessibelle.github.io/elementize/",
+    "download": "http://dessibelle.github.io/elementize/",
+    "dependencies": {
+        "jquery": ">=1.7"
+    }
+}
