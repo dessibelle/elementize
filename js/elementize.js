@@ -1201,17 +1201,18 @@
         wrap = document.createElement("span");
         wrap.setAttribute("class", class_list);
         symbol = document.createElement("span");
-        symbol.innerText = element_data.symbol;
+        log(element_data.symbol);
+        $(symbol).text(element_data.symbol);
         symbol.setAttribute("class", "symbol");
         atomic_number = element_data.atomic_number;
         atomic_weight = element_data.weight.toFixed(1);
         if (settings.noPseudoElements) {
           number = document.createElement("span");
-          number.innerText = atomic_number;
+          $(number).text(atomic_number);
           number.setAttribute("class", "number");
           wrap.appendChild(number);
           weight = document.createElement("span");
-          weight.innerText = atomic_weight;
+          $(weight).text(atomic_weight);
           weight.setAttribute("class", "weight");
           wrap.appendChild(weight);
         } else {
@@ -1227,7 +1228,6 @@
         doneClass = "elementized";
         if (!$(this).hasClass(doneClass)) {
           text_nodes = getTextNodesIn(this, false);
-          log(text_nodes);
           $(text_nodes).each(function() {
             var content, parent, replacement, text_node;
 
@@ -1238,7 +1238,6 @@
               replacement = document.createElement("span");
               replacement.innerHTML = content;
               parent = text_node.parentNode;
-              log(parent);
               return parent.replaceChild(replacement, text_node);
             }
           });

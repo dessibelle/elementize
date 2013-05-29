@@ -264,7 +264,10 @@ $.fn.extend
       wrap.setAttribute "class", class_list
       # Symbol element
       symbol = document.createElement "span"
-      symbol.innerText = element_data.symbol
+
+      log element_data.symbol
+
+      $(symbol).text element_data.symbol
       symbol.setAttribute "class", "symbol"
 
       atomic_number = element_data.atomic_number
@@ -273,12 +276,12 @@ $.fn.extend
       # Number attribute / element
       if settings.noPseudoElements
         number = document.createElement "span"
-        number.innerText = atomic_number
+        $(number).text atomic_number
         number.setAttribute "class", "number"
         wrap.appendChild number
 
         weight = document.createElement "span"
-        weight.innerText = atomic_weight
+        $(weight).text atomic_weight
         weight.setAttribute "class", "weight"
         wrap.appendChild weight
       else
@@ -297,8 +300,6 @@ $.fn.extend
 
         text_nodes = getTextNodesIn this, false
 
-        log text_nodes
-
         $(text_nodes).each( () ->
           text_node = this
 
@@ -311,8 +312,6 @@ $.fn.extend
             replacement.innerHTML = content
 
             parent = text_node.parentNode
-
-            log parent
             parent.replaceChild replacement, text_node
         )
 
